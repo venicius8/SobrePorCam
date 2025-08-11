@@ -11,6 +11,13 @@ async function startCamera() {
 
 startCamera();
 
-if (screen.width > screen.height) {
-  video.style.width = "100%";
-}
+imageInput.addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      overlayImage.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
